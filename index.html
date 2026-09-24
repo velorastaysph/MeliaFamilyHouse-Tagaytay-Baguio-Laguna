@@ -33,6 +33,434 @@ background:#faf9f6;
 color:#222;
 }
 
+html,
+body{
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+/* ================= AVAILABILITY RESULT ================= */
+
+.availability-result{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:9998;
+    background:rgba(0,0,0,.78);
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.availability-result.active{
+    display:flex;
+}
+
+.availability-card{
+    position:relative;
+    width:min(520px,100%);
+    background:#fff;
+    padding:40px;
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+    border-radius:4px;
+}
+
+.availability-close{
+    position:absolute;
+    top:12px;
+    right:15px;
+    width:38px;
+    height:38px;
+    border:none;
+    background:transparent;
+    font-size:30px;
+    cursor:pointer;
+    color:#555;
+}
+
+.availability-label{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:2px;
+    color:#b49652;
+    margin-bottom:8px;
+}
+
+.availability-card h2{
+    font-family:'Playfair Display',serif;
+    font-size:30px;
+    margin-bottom:25px;
+    color:#111;
+}
+
+.availability-summary{
+    border-top:1px solid #ddd;
+    border-bottom:1px solid #ddd;
+    padding:20px 0;
+    line-height:1.8;
+    font-size:14px;
+}
+
+.availability-summary strong{
+    color:#111;
+}
+
+.availability-total{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 0;
+}
+
+.availability-total span{
+    font-size:13px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.availability-total strong{
+    font-size:25px;
+    color:#b49652;
+}
+
+.proceed-payment-btn{
+    width:100%;
+    min-height:55px;
+    border:none;
+    background:#111;
+    color:#fff;
+    font-family:inherit;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.proceed-payment-btn:hover{
+    background:#b49652;
+}
+
+@media(max-width:600px){
+
+    .availability-card{
+        padding:30px 22px;
+    }
+
+    .availability-card h2{
+        font-size:25px;
+    }
+
+    .availability-total strong{
+        font-size:22px;
+    }
+
+}
+
+    
+ /* ================= PAYMENT ================= */
+
+.payment-box{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.78);
+    z-index:7000;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
+.payment-box.active{
+    display:flex;
+}
+
+.payment-card{
+    width:min(620px,100%);
+    max-height:92vh;
+    overflow-y:auto;
+    overflow-x:hidden;
+    background:#fff;
+    padding:34px;
+    position:relative;
+    box-shadow:0 30px 90px rgba(0,0,0,.45);
+    border-radius:4px;
+}
+
+.payment-card h2{
+    font-family:'Playfair Display',serif;
+    font-size:38px;
+    font-weight:400;
+    margin-bottom:8px;
+}
+
+.payment-intro{
+    color:#777;
+    font-size:13px;
+    line-height:1.7;
+    margin-bottom:22px;
+}
+
+.payment-summary{
+    background:#f7f4ed;
+    border:1px solid #e6dfd1;
+    padding:16px;
+    margin-bottom:22px;
+    font-size:12px;
+    line-height:1.8;
+}
+
+.payment-summary strong{
+    color:#111;
+}
+
+.close-btn{
+    position:absolute;
+    right:18px;
+    top:12px;
+    border:0;
+    background:none;
+    font-size:30px;
+    cursor:pointer;
+    color:#555;
+}
+.payment-methods{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-bottom:22px;
+}
+
+.payment-btn{
+    width:100%;
+    height:98px;
+
+    border:1px solid #cfd2d7;
+    border-radius:5px;
+
+    background:#fff;
+
+    padding:15px;
+
+    font-family:inherit;
+    font-weight:700;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        transform .15s ease;
+}
+
+.payment-btn:hover{
+    background:#fff;
+    color:inherit;
+    border-color:#999;
+
+    box-shadow:0 4px 14px rgba(0,0,0,.08);
+}
+
+.payment-btn.selected{
+    background:#fff;
+    color:inherit;
+
+    border:2px solid #333;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.payment-btn img{
+    display:block;
+
+    max-width:190px;
+    max-height:58px;
+
+    width:auto;
+    height:auto;
+
+    object-fit:contain;
+}
+
+@media(max-width:600px){
+
+    .payment-methods{
+        grid-template-columns:1fr;
+        gap:12px;
+    }
+
+    .payment-btn{
+        height:82px;
+    }
+
+    .payment-btn img{
+        max-width:160px;
+        max-height:50px;
+    }
+
+}
+
+.payment-details{
+    display:none;
+    background:#faf9f6;
+    border:1px solid #e7e2d8;
+    padding:20px;
+    margin-bottom:20px;
+    text-align:center;
+}
+
+.payment-details.active{
+    display:block;
+}
+
+.payment-details p{
+    font-size:13px;
+    margin:7px 0;
+    color:#444;
+}
+
+.payment-details strong{
+    color:#111;
+}
+
+.payment-qr{
+    display:block;
+    width:180px;
+    height:180px;
+    object-fit:contain;
+    margin:0 auto 15px;
+    border:1px solid #ddd;
+    background:#fff;
+}
+
+.payment-placeholder{
+    font-size:11px;
+    color:#999;
+    margin-top:10px;
+}
+
+.payment-card label{
+    display:block;
+    font-size:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color:#777;
+    margin:13px 0 7px;
+}
+
+.payment-card input{
+    width:100%;
+    padding:13px;
+    border:1px solid #ddd;
+    outline:none;
+    font-family:inherit;
+    font-size:13px;
+    background:#fff;
+}
+
+.payment-card input:focus{
+    border-color:#b49652;
+}
+
+.submit-btn{
+    width:100%;
+    border:0;
+    background:#111;
+    color:#fff;
+    padding:15px;
+    margin-top:20px;
+    font-family:inherit;
+    font-size:11px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    cursor:pointer;
+}
+
+.submit-btn:hover{
+    background:#b49652;
+}
+
+.confirmation{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.78);
+    z-index:7100;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.confirmation.active{
+    display:flex;
+}
+
+.confirmation-card{
+    background:#fff;
+    width:min(520px,100%);
+    padding:42px;
+    text-align:center;
+    box-shadow:0 30px 90px rgba(0,0,0,.45);
+}
+
+.confirmation-card h2{
+    font-family:'Playfair Display',serif;
+    font-size:38px;
+    font-weight:400;
+    margin-bottom:15px;
+}
+
+.confirmation-card p{
+    color:#666;
+    font-size:13px;
+    line-height:1.8;
+}
+
+.confirmation-close{
+    margin-top:22px;
+    border:0;
+    background:#111;
+    color:#fff;
+    padding:13px 24px;
+    font-family:inherit;
+    font-size:11px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+@media(max-width:600px){
+
+    .payment-card{
+        padding:28px 20px;
+    }
+
+    .payment-card h2{
+        font-size:31px;
+    }
+
+    .payment-methods{
+        grid-template-columns:1fr;
+    }
+
+    .payment-qr{
+        width:160px;
+        height:160px;
+    }
+
+    .confirmation-card{
+        padding:32px 22px;
+    }
+}  
+   
 /* ================= HEADER ================= */
 
 header{
@@ -102,7 +530,7 @@ transform:rotate(90deg);
     top:105px;
     left:50%;
 
-    width:300px;
+    width:200px;
 
     transform:translateX(-50%);
 
@@ -221,22 +649,22 @@ transform:rotate(90deg);
    MOBILE
 ========================================================= */
 
-@media(max-width:600px){
+@media(max-width:400px){
 
     .hero-logo{
         top:90px;
-        width:210px;
+        width:170px;
     }
 
 }
 
 /* ================= MOBILE LOGO ================= */
 
-@media(max-width:600px){
+@media(max-width:400px){
 
     .hero-logo{
         top:95px;
-        width:190px;
+        width:170px;
     }
 
 }
@@ -381,15 +809,15 @@ rgba(0,0,0,.60)
 }
 
 .slide-1{
-    background-image: url("images/hero/Tagaytay.jpg");
+    background-image: url("tagaytay.jpg");
 }
 
 .slide-2{
-    background-image: url("images/hero/laguna.jpg");
+    background-image: url("laguna.jpg");
 }
 
 .slide-3{
-    background-image: url("images/hero/baguio.jpg");
+    background-image: url("baguio.jpg");
 }
 
 .hero-content{
@@ -2475,7 +2903,7 @@ aria-label="Instagram">
     <div class="hero-logo" id="heroLogo">
 
         <img
-            src="images/logo/logo.png"
+            src="logo.png"
             alt="Meliá Philippines Hotels & Resorts Logo">
 
     </div>
@@ -2576,18 +3004,277 @@ Check Availability
 </button>
 
 </form>
+   
+</section>
+
+<!-- ================= AVAILABILITY RESULT ================= -->
+
+<section
+    class="availability-result"
+    id="availabilityResult"
+    aria-hidden="true">
+
+    <div class="availability-card">
+
+        <button
+            type="button"
+            class="availability-close"
+            onclick="closeAvailability()"
+            aria-label="Close">
+            ×
+        </button>
+
+        <div class="availability-label">
+            AVAILABILITY RESULT
+        </div>
+
+        <h2>Your Stay Summary</h2>
+
+        <div
+            class="availability-summary"
+            id="availabilitySummary">
+        </div>
+
+        <div class="availability-total">
+
+            <span>Total Amount</span>
+
+            <strong id="availabilityTotal">
+                ₱0
+            </strong>
+
+        </div>
+
+        <button
+            type="button"
+            class="proceed-payment-btn"
+            onclick="proceedToPayment()">
+
+            PROCEED TO PAYMENT
+
+        </button>
+
+    </div>
+
+</section>
+    
+   <!-- ================= PAYMENT ================= -->
+
+<section class="payment-box" id="paymentBox" aria-hidden="true">
+
+    <div class="payment-card">
+
+        <button
+            type="button"
+            class="close-btn"
+            onclick="closePayment()"
+            aria-label="Close payment">
+            ×
+        </button>
+
+        <h2>Complete Your Booking</h2>
+
+        <p class="payment-intro">
+            Choose your preferred payment method, then enter your
+            payment details and proof of payment.
+        </p>
+
+        <div
+            class="payment-summary"
+            id="paymentSummary">
+        </div>
 
 
-<div class="slider-dots">
+       <div class="payment-methods">
 
-<div class="dot active" data-slide="0"></div>
-<div class="dot" data-slide="1"></div>
-<div class="dot" data-slide="2"></div>
+    <button
+        type="button"
+        id="gcashBtn"
+        class="payment-btn"
+        onclick="selectPayment('gcash')">
+
+        <img
+            src="cash.jpg"
+            alt="GCash">
+
+    </button>
+
+    <button
+        type="button"
+        id="bdoBtn"
+        class="payment-btn"
+        onclick="selectPayment('bdo')">
+
+        <img
+            src="bd.jpg"
+            alt="BDO">
+
+    </button>
 
 </div>
 
+
+        <!-- GCASH -->
+
+        <div
+            id="gcashDetails"
+            class="payment-details">
+
+            <img
+                src="gcash.jpg"
+                class="payment-qr"
+                alt="GCash QR Code"
+                onerror="
+                this.style.display='none';
+                document.getElementById('gcashQrNote').style.display='block';
+                "
+            >
+
+            <div
+                id="gcashQrNote"
+                class="payment-placeholder"
+                style="display:none;">
+
+                Add your GCash QR image as
+                <strong>gcash</strong>
+                in the same folder as this HTML file.
+
+            </div>
+
+            <p>
+                <strong>GCash Name:</strong>
+                Erika Faye R.
+            </p>
+
+            <p>
+                <strong>GCash Number:</strong>
+                0917-721-4492
+            </p>
+
+        </div>
+
+
+        <!-- BDO -->
+
+        <div
+            id="bdoDetails"
+            class="payment-details">
+
+            <img
+                src="bdo.jpg"
+                class="payment-qr"
+                alt="BDO QR Code"
+                onerror="
+                this.style.display='none';
+                document.getElementById('bdoQrNote').style.display='block';
+                "
+            >
+
+            <div
+                id="bdoQrNote"
+                class="payment-placeholder"
+                style="display:none;">
+
+                Add your BDO QR image as
+                <strong>Bdo</strong>
+                in the same folder as this HTML file.
+
+            </div>
+
+            <p>
+                <strong>BDO Account Name:</strong>
+                Erika Faye D.
+            </p>
+
+            <p>
+                <strong>BDO Account Number:</strong>
+                002070096064
+            </p>
+
+        </div>
+
+
+        <!-- CUSTOMER NAME -->
+
+        <label for="paymentName">
+            Full Name
+        </label>
+
+        <input
+            type="text"
+            id="paymentName"
+            placeholder="Enter your full name"
+            autocomplete="name"
+        >
+
+
+        <!-- REFERENCE -->
+
+        <label for="paymentReference">
+            Payment Reference Number
+        </label>
+
+        <input
+            type="text"
+            id="paymentReference"
+            placeholder="Enter transaction/reference number"
+        >
+
+
+        <!-- PAYMENT PROOF -->
+
+        <label for="paymentProof">
+            Payment Proof
+        </label>
+
+        <input
+            type="file"
+            id="paymentProof"
+            accept="image/*"
+        >
+
+
+        <button
+            type="button"
+            class="submit-btn"
+            onclick="submitPayment()">
+
+            Submit Payment Details
+
+        </button>
+
+    </div>
+
 </section>
 
+
+<!-- ================= CONFIRMATION ================= -->
+
+<section
+    class="confirmation"
+    id="confirmationBox"
+    aria-hidden="true">
+
+    <div class="confirmation-card">
+
+        <h2>
+            ✓ Booking Submitted!
+        </h2>
+
+        <p id="confirmationText"></p>
+
+        <button
+            type="button"
+            class="confirmation-close"
+            onclick="closeConfirmation()">
+
+            Close
+
+        </button>
+
+    </div>
+
+</section>
 
 <!-- ================= INTRO ================= -->
 
@@ -2635,7 +3322,7 @@ Explore
 <article class="destination">
 
 <img
-src="images/destinations/tagaytay.jpg"
+src="tagaytay.jpg"
 alt="Tagaytay luxury hotel">
 
 <div class="destination-content">
@@ -2701,7 +3388,7 @@ Book Now
 <article class="destination">
 
 <img
-src="images/destinations/laguna.jpg"
+src="laguna.jpg"
 alt="Laguna luxury resort">
 
 <div class="destination-content">
@@ -2767,7 +3454,7 @@ Book Now
 <article class="destination">
 
 <img
-src="images/destinations/baguio.jpg"
+src="baguio.jpg"
 alt="Baguio luxury hotel">
 
 <div class="destination-content">
@@ -2863,7 +3550,7 @@ The sample packages below accommodate up to
 <div class="room-image">
 
 <img
-src="images/rooms/tagaytay-family-suite.jpg"
+src="tagaytay-family-suite.jpg"
 alt="Tagaytay family suite">
 
 <div class="room-badge">
@@ -2963,7 +3650,7 @@ View Details
 <div class="room-image">
 
 <img
-src="images/rooms/laguna-family-room.jpg"
+src="laguna-family-room.jpg"
 alt="Laguna family resort room">
 
 <div class="room-badge">
@@ -3068,7 +3755,7 @@ View Details
 <div class="room-image">
 
 <img
-src="images/rooms/baguio-family-room.jpg"
+src="baguio-family-room.jpg"
 alt="Baguio family room">
 
 <div class="room-badge">
@@ -3178,7 +3865,7 @@ Photo Gallery
 <div class="gallery-item large">
 
 <img
-src="images/gallery/imagesgallerytagaytay-hotel-view.jpg"
+src="imagesgallerytagaytay-hotel-view.jpg"
 alt="Tagaytay Hotel View">
 
 </div>
@@ -3186,7 +3873,7 @@ alt="Tagaytay Hotel View">
 <div class="gallery-item">
 
 <img
-src="images/gallery/imagesgallerytagaytay-luxury-interior.jpg"
+src="imagesgallerytagaytay-luxury-interior.jpg"
 alt="Tagaytay Luxury Interior">
 
 </div>
@@ -3194,7 +3881,7 @@ alt="Tagaytay Luxury Interior">
 <div class="gallery-item">
 
 <img
-src="images/gallery/imagesgallerylaguna-resort-view.jpg"
+src="imagesgallerylaguna-resort-view.jpg"
 alt="Laguna Resort View">
 
 </div>
@@ -3202,7 +3889,7 @@ alt="Laguna Resort View">
 <div class="gallery-item">
 
 <img
-src="images/gallery/imagesgallerylaguna-garden.jpg"
+src="imagesgallerylaguna-garden.jpg"
 alt="Laguna Garden">
 
 </div>
@@ -3210,7 +3897,7 @@ alt="Laguna Garden">
 <div class="gallery-item">
 
 <img
-src="images/gallery/imagesgallerybaguio-hotel-view.jpg"
+src="imagesgallerybaguio-hotel-view.jpg"
 alt="Baguio Hotel View">
 
 </div>
@@ -3243,9 +3930,13 @@ Find Us
 <div class="map-card">
 
 <iframe
-src="https://www.google.com/maps?q=Melia's family house%2C%20Philippines&output=embed"
-loading="lazy"
-allowfullscreen>
+  src="https://www.google.com/maps?q=Melia's family house%2C%20Philippines&output=embed"
+  width="600"
+  height="450"
+  style="border:0;"
+  allowfullscreen=""
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade">
 </iframe>
 
 <div class="map-info">
@@ -3423,7 +4114,7 @@ A
 <div class="offer-image">
 
 <img
-src="images/offer/imagesofferb.jpg"
+src="imagesofferb.jpg"
 alt="Luxury hotel room">
 
 </div>
@@ -4004,8 +4695,6 @@ id="bookingMessage">
 Your booking request has been received!
 
 </div>
-
-
 <!-- ================= JAVASCRIPT ================= -->
 
 <script>
@@ -4292,66 +4981,566 @@ message.classList.remove("show");
 
 }
 
+/* ================= BOOKING + AVAILABILITY + PAYMENT ================= */
 
-/* ================= BOOKING FORM ================= */
+let selectedPayment = "";
+let currentBooking = {};
 
-document
-.getElementById("bookingForm")
-.addEventListener("submit",function(e){
+const bookingForm = document.getElementById("bookingForm");
 
-e.preventDefault();
+if (bookingForm) {
 
-const destination=
-document.getElementById(
-"destinationSelect"
-).value;
+    bookingForm.addEventListener("submit", function(e) {
 
-const guestCount=
-document.getElementById(
-"guests"
-).value;
+        e.preventDefault();
 
-if(!destination){
+        const destination =
+            document.getElementById("destinationSelect").value;
 
-alert(
-"Please select Tagaytay, Laguna or Baguio."
-);
+        const arrival =
+            document.getElementById("arrival").value;
 
-return;
+        const departure =
+            document.getElementById("departure").value;
+
+        const guests =
+            document.getElementById("guests").value;
+
+        if (!destination || !arrival || !departure || !guests) {
+
+            alert("Please complete all booking details.");
+
+            return;
+        }
+
+
+        /* ================= DATE CALCULATION ================= */
+
+        const start =
+            new Date(arrival + "T00:00:00");
+
+        const end =
+            new Date(departure + "T00:00:00");
+
+
+        if (end <= start) {
+
+            alert(
+                "Departure date must be after arrival date."
+            );
+
+            return;
+        }
+
+
+        const nights =
+            Math.ceil(
+                (end - start) /
+                (1000 * 60 * 60 * 24)
+            );
+
+
+        /* ================= PRICE ================= */
+
+        const pricePerNight = 3000;
+
+        const total =
+            pricePerNight * nights;
+
+
+        /* ================= SAVE BOOKING ================= */
+
+        currentBooking = {
+
+            destination: destination,
+
+            arrival: arrival,
+
+            departure: departure,
+
+            guests: guests,
+
+            nights: nights,
+
+            rate: pricePerNight,
+
+            total: total
+
+        };
+
+
+        /* ================= SHOW RESULT ================= */
+
+        const availabilityResult =
+            document.getElementById(
+                "availabilityResult"
+            );
+
+        const availabilitySummary =
+            document.getElementById(
+                "availabilitySummary"
+            );
+
+        const availabilityTotal =
+            document.getElementById(
+                "availabilityTotal"
+            );
+
+
+        if (
+            !availabilityResult ||
+            !availabilitySummary ||
+            !availabilityTotal
+        ) {
+
+            alert(
+                "Availability result section was not found."
+            );
+
+            return;
+        }
+
+
+        availabilitySummary.innerHTML = `
+
+            <strong>Destination:</strong>
+            ${escapeText(destination)}
+
+            <br>
+
+            <strong>Arrival:</strong>
+            ${escapeText(arrival)}
+
+            <br>
+
+            <strong>Departure:</strong>
+            ${escapeText(departure)}
+
+            <br>
+
+            <strong>Guests:</strong>
+            ${escapeText(guests)}
+
+            <br>
+
+            <strong>Number of Nights:</strong>
+            ${nights}
+
+            <br>
+
+            <strong>Price per Night:</strong>
+            ₱${pricePerNight.toLocaleString("en-PH")}
+
+            <br>
+
+            <strong>Calculation:</strong>
+            ${nights} × ₱${pricePerNight.toLocaleString("en-PH")}
+
+        `;
+
+
+        availabilityTotal.textContent =
+            "₱" +
+            total.toLocaleString("en-PH");
+
+
+        availabilityResult.classList.add("active");
+
+        availabilityResult.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+    });
 
 }
 
-alert(
-"Thank you! Your availability request for "+
-destination+
-" for "+
-guestCount+
-" guest(s) has been received."
-);
 
-});
+/* ================= PROCEED TO PAYMENT ================= */
 
-/* ================= ESCAPE KEY ================= */
+function proceedToPayment() {
 
-document.addEventListener("keydown",function(e){
+    const availabilityResult =
+        document.getElementById(
+            "availabilityResult"
+        );
 
-    if(e.key==="Escape"){
+    const paymentBox =
+        document.getElementById(
+            "paymentBox"
+        );
 
-        closeDetails();
+    const paymentSummary =
+        document.getElementById(
+            "paymentSummary"
+        );
 
-        sideMenu.classList.remove("active");
 
-        if(proChatWindow){
+    if (!paymentBox || !paymentSummary) {
 
-            proChatWindow.classList.remove("active");
+        alert(
+            "Payment section was not found."
+        );
 
-            proChatWindow.classList.remove("minimized");
+        return;
+    }
 
-        }
+
+    paymentSummary.innerHTML = `
+
+        <strong>Destination:</strong>
+        ${escapeText(currentBooking.destination)}
+
+        <br><br>
+
+        <strong>Arrival:</strong>
+        ${escapeText(currentBooking.arrival)}
+
+        <br><br>
+
+        <strong>Departure:</strong>
+        ${escapeText(currentBooking.departure)}
+
+        <br><br>
+
+        <strong>Guests:</strong>
+        ${escapeText(currentBooking.guests)}
+
+        <br><br>
+
+        <strong>Number of Nights:</strong>
+        ${currentBooking.nights}
+
+        <br><br>
+
+        <strong>Price per Night:</strong>
+        ₱${currentBooking.rate.toLocaleString("en-PH")}
+
+        <hr>
+
+        <strong>Total Amount:</strong>
+        ₱${currentBooking.total.toLocaleString("en-PH")}
+
+    `;
+
+
+    /* Reset payment selection */
+
+    selectedPayment = "";
+
+
+    const gcashBtn =
+        document.getElementById("gcashBtn");
+
+    const bdoBtn =
+        document.getElementById("bdoBtn");
+
+    const gcashDetails =
+        document.getElementById("gcashDetails");
+
+    const bdoDetails =
+        document.getElementById("bdoDetails");
+
+
+    if (gcashBtn)
+        gcashBtn.classList.remove("selected");
+
+    if (bdoBtn)
+        bdoBtn.classList.remove("selected");
+
+    if (gcashDetails)
+        gcashDetails.classList.remove("active");
+
+    if (bdoDetails)
+        bdoDetails.classList.remove("active");
+
+
+    /* Close availability */
+
+    if (availabilityResult) {
+
+        availabilityResult.classList.remove("active");
+
+        availabilityResult.setAttribute(
+            "aria-hidden",
+            "true"
+        );
 
     }
 
-});
+
+    /* Open payment */
+
+    paymentBox.classList.add("active");
+
+    paymentBox.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+}
+
+
+/* ================= CLOSE AVAILABILITY ================= */
+
+function closeAvailability() {
+
+    const availabilityResult =
+        document.getElementById(
+            "availabilityResult"
+        );
+
+    if (availabilityResult) {
+
+        availabilityResult.classList.remove(
+            "active"
+        );
+
+        availabilityResult.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+    }
+
+}
+
+
+/* ================= PAYMENT ================= */
+
+function selectPayment(method) {
+
+    selectedPayment = method;
+
+
+    const gcashBtn =
+        document.getElementById("gcashBtn");
+
+    const bdoBtn =
+        document.getElementById("bdoBtn");
+
+    const gcashDetails =
+        document.getElementById("gcashDetails");
+
+    const bdoDetails =
+        document.getElementById("bdoDetails");
+
+
+    if (
+        !gcashBtn ||
+        !bdoBtn ||
+        !gcashDetails ||
+        !bdoDetails
+    ) {
+
+        return;
+    }
+
+
+    gcashBtn.classList.toggle(
+        "selected",
+        method === "gcash"
+    );
+
+    bdoBtn.classList.toggle(
+        "selected",
+        method === "bdo"
+    );
+
+
+    gcashDetails.classList.toggle(
+        "active",
+        method === "gcash"
+    );
+
+    bdoDetails.classList.toggle(
+        "active",
+        method === "bdo"
+    );
+
+}
+
+
+/* ================= CLOSE PAYMENT ================= */
+
+function closePayment() {
+
+    const paymentBox =
+        document.getElementById(
+            "paymentBox"
+        );
+
+    if (paymentBox) {
+
+        paymentBox.classList.remove(
+            "active"
+        );
+
+        paymentBox.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+    }
+
+}
+
+
+/* ================= ESCAPE TEXT ================= */
+
+function escapeText(value) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        value == null
+            ? ""
+            : String(value);
+
+    return div.innerHTML;
+}
+
+
+/* ================= SUBMIT PAYMENT ================= */
+
+function submitPayment() {
+
+    const paymentName =
+        document.getElementById("paymentName");
+
+    const paymentReference =
+        document.getElementById("paymentReference");
+
+    const paymentProof =
+        document.getElementById("paymentProof");
+
+    const confirmationBox =
+        document.getElementById("confirmationBox");
+
+    const confirmationText =
+        document.getElementById("confirmationText");
+
+
+    if (!selectedPayment) {
+        alert("Please select GCash or BDO.");
+        return;
+    }
+
+
+    if (!paymentName || !paymentName.value.trim()) {
+        alert("Please enter your full name.");
+        return;
+    }
+
+
+    if (!paymentReference || !paymentReference.value.trim()) {
+        alert("Please enter your payment reference number.");
+        return;
+    }
+
+
+    if (
+        !paymentProof ||
+        !paymentProof.files ||
+        !paymentProof.files.length
+    ) {
+        alert("Please attach your payment proof.");
+        return;
+    }
+
+
+    const methodName =
+        selectedPayment === "gcash"
+            ? "GCash"
+            : "BDO";
+
+
+    const proofName =
+        paymentProof.files[0].name;
+
+
+    if (confirmationText) {
+
+        confirmationText.innerHTML =
+            "Thank you, <strong>" +
+            escapeText(paymentName.value.trim()) +
+            "</strong>.<br><br>" +
+
+            "Your booking request for <strong>" +
+            escapeText(currentBooking.destination) +
+            "</strong> from <strong>" +
+            escapeText(currentBooking.arrival) +
+            "</strong> to <strong>" +
+            escapeText(currentBooking.departure) +
+            "</strong> for <strong>" +
+            escapeText(currentBooking.guests) +
+            " guest(s)</strong> has been prepared.<br><br>" +
+
+            "Number of nights: <strong>" +
+            currentBooking.nights +
+            "</strong><br>" +
+
+            "Price per night: <strong>₱" +
+            currentBooking.rate.toLocaleString("en-PH") +
+            "</strong><br>" +
+
+            "Total amount: <strong>₱" +
+            currentBooking.total.toLocaleString("en-PH") +
+            "</strong><br>" +
+
+            "Payment method: <strong>" +
+            methodName +
+            "</strong><br>" +
+
+            "Reference: <strong>" +
+            escapeText(paymentReference.value.trim()) +
+            "</strong><br>" +
+
+            "Proof attached: <strong>" +
+            escapeText(proofName) +
+            "</strong><br><br>" +
+
+            "Your payment details have been received.";
+    }
+
+
+    closePayment();
+
+
+    if (confirmationBox) {
+
+        confirmationBox.classList.add("active");
+
+        confirmationBox.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+    }
+
+}
+
+
+/* ================= CLOSE CONFIRMATION ================= */
+
+function closeConfirmation() {
+
+    const confirmationBox =
+        document.getElementById("confirmationBox");
+
+    if (confirmationBox) {
+
+        confirmationBox.classList.remove("active");
+
+        confirmationBox.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+    }
+
+}
 
 /* =========================================================
    MELIÁ PHILIPPINES — PRO CHAT JAVASCRIPT
@@ -4908,8 +6097,9 @@ if (proChatQuick) {
 
 }
 
+
 </script>
 
 </body>
 </html>
-
+    
